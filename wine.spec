@@ -1,7 +1,7 @@
 Summary:	Program that lets you launch Win applications
 Name:		wine
 Version:	1.4.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications/Emulators
