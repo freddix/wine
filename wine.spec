@@ -1,14 +1,18 @@
+%define		wgeckover	2.21
+
 Summary:	Program that lets you launch Win applications
 Name:		wine
-Version:	1.4.1
-Release:	2
+Version:	1.6
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications/Emulators
 Source0:	http://downloads.sourceforge.net/wine/%{name}-%{version}.tar.bz2
-# Source0-md5:	0c28702ed478df7a1c097f3a9c4cabd6
-Source1:        http://downloads.sourceforge.net/wine/%{name}_gecko-1.4-x86.msi
-# Source1-md5:	700aaa08724be1992cffed7b87e79a44
+# Source0-md5:	47cf1e121d395e9c8ca1a4ab88f1e658
+Source1:        http://downloads.sourceforge.net/wine/%{name}_gecko-%{wgeckover}-x86.msi
+# Source1-md5:	432eb3a2d05c3f07df67864f53c87c60
+Source2:	http://downloads.sourceforge.net/wine/%{name}_gecko-%{wgeckover}-x86_64.msi
+# Source2-md5:	580bbabde1ec99ba9caa439c2dbca3f6
 Patch0:		%{name}-makedep.patch
 Patch1:		%{name}-ncurses.patch
 Patch2:		%{name}-ca_certificates.patch
@@ -114,7 +118,6 @@ install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_aclocaldir}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -p tools/fnt2bdf $RPM_BUILD_ROOT%{_bindir}
 cp -a aclocal.m4 $RPM_BUILD_ROOT%{_aclocaldir}/wine.m4
 
 install -d \
@@ -178,7 +181,11 @@ for p in $programs; do
 done
 
 install -d $RPM_BUILD_ROOT%{_winedir}/gecko
+%ifnarch %{x8664}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_winedir}/gecko
+%else
+install %{SOURCE2} $RPM_BUILD_ROOT%{_winedir}/gecko
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -247,7 +254,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/fnt2bdf
 %attr(755,root,root) %{_bindir}/function_grep.pl
 %attr(755,root,root) %{_bindir}/widl
 %attr(755,root,root) %{_bindir}/winebuild
