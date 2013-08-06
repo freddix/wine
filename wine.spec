@@ -2,13 +2,13 @@
 
 Summary:	Program that lets you launch Win applications
 Name:		wine
-Version:	1.6
+Version:	1.7.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications/Emulators
 Source0:	http://downloads.sourceforge.net/wine/%{name}-%{version}.tar.bz2
-# Source0-md5:	47cf1e121d395e9c8ca1a4ab88f1e658
+# Source0-md5:	24789490809ddb5db5286819b3fdfed5
 Source1:        http://downloads.sourceforge.net/wine/%{name}_gecko-%{wgeckover}-x86.msi
 # Source1-md5:	432eb3a2d05c3f07df67864f53c87c60
 Source2:	http://downloads.sourceforge.net/wine/%{name}_gecko-%{wgeckover}-x86_64.msi
